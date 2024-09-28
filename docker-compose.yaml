@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  backend:
+    container_name: "rails-web"
+    build:
+      context: .
+      dockerfile: ./docker/backend/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: bind
+        source: "./backend"
+        target: "/app/backend"
+      - type: bind
+        source: "./.env"
+        target: "/app/.env"
+    # depends_on:
+    #   db:
+    #     condition: service_healthy
